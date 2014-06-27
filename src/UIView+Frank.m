@@ -6,12 +6,23 @@
 //  Copyright (c) 2012 ThoughtWorks. All rights reserved.
 //
 
-
+#import <AddressBook/AddressBook.h>
 #import "LoadableCategory.h"
+
 
 MAKE_CATEGORIES_LOADABLE(UIView_Frank)
 
 @implementation UIView (Frank)
+
+- (void)FEX_addressBookRequestAccess
+{
+    // initiates accessing address book so that Contacts access alert may appear
+    ABAddressBookRequestAccessWithCompletion(NULL, ^(bool granted, CFErrorRef error)
+    {
+        NSError *nsError = (__bridge NSError *)error;
+        NSLog(@"Access to contacts granted = %@, error = %@", granted ? @"YES" : @"NO", nsError);
+    });
+}
 
 // Based on UISpec's flash method
 - (void)FEX_flash {
