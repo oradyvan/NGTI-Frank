@@ -21,14 +21,10 @@ MAKE_CATEGORIES_LOADABLE(UIView_Frank)
     // initiates accessing address book so that Contacts access alert may appear
     ABAddressBookRequestAccessWithCompletion(addressBook, ^(bool granted, CFErrorRef error)
     {
-        NSError *nsError = (__bridge NSError *)error;
-        NSLog(@"Access to contacts granted = %@, error = %@", granted ? @"YES" : @"NO", nsError);
-        
         if (granted)
         {
             ABAddressBookRef book = ABAddressBookCreate();
             ABRecordRef defaultSource = ABAddressBookCopyDefaultSource(book);
-            NSLog(@"defaultSource = %@", defaultSource);
             CFRelease(defaultSource);
         }
     });
