@@ -3,16 +3,16 @@
 	url = https://github.com/moredip/UISpec
 [submodule "lib/Shelley"]
 	path = lib/Shelley
-	url = https://github.com/TestingWithFrank/Shelley.git
+	url = https://github.com/ngti/Shelley.git
 [submodule "symbiote"]
 	path = symbiote
-	url = https://github.com/TestingWithFrank/symbiote.git
+	url = https://github.com/ngti/symbiote.git
 [submodule "lib/cocoahttpserver"]
 	path = lib/cocoahttpserver
-	url = https://github.com/robbiehanson/CocoaHTTPServer.git
+	url = https://github.com/ngti/CocoaHTTPServer.git
 [submodule "lib/PublicAutomation"]
 	path = lib/PublicAutomation
-	url = https://github.com/TestingWithFrank/PublicAutomation.git
+	url = https://github.com/ngti/PublicAutomation.git
 [submodule "lib/AnyJSON"]
 	path = lib/AnyJSON
-	url = https://github.com/mattt/AnyJSON.git
+	url = https://github.com/ngti/AnyJSON.git
