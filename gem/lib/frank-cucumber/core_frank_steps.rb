@@ -25,6 +25,8 @@ Then /^I should see a navigation bar titled "([^\"]*)"$/ do |expected_mark|
 end
 
 Then /^I wait to see a navigation bar titled "([^\"]*)"$/ do |expected_title|
+  quote = get_selector_quote(expected_title)
+  quoted_text = "#{quote}#{expected_title}#{quote}"
   wait_until(message: "waited to see a navigation bar titled #{quoted_text}") do
     navigation_title_with_text_exists(expected_title)
   end
