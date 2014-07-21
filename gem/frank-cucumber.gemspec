@@ -3,14 +3,14 @@ $:.push File.expand_path("../lib", __FILE__)
 require "frank-cucumber/version"
 
 Gem::Specification.new do |s|
-  s.name        = "frank-cucumber"
-  s.version     = Frank::Cucumber::VERSION + ".ngti"
+  s.name        = "ngti-frank-cucumber"
+  s.version     = Frank::Cucumber::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Pete Hodgson","Derek Longmuir","Oleksiy Radyvanyuk"]
   s.email       = ["gems@thepete.net","oleksiy@ngti.nl"]
   s.homepage    = "http://rubygems.org/gems/frank-cucumber"
   s.summary     = %q{Use cucumber to test native iOS apps via Frank}
-  s.description = %q{Use cucumber to test native iOS apps via Frank}
+  s.description = %q{This is a modified version of Frank used solely inside NGTI company}
 
   git_files = `git ls-files`.split("\n")
   git_libs = `git ls-files -o -i --exclude-from=./.gitignore`.split("\n") 
