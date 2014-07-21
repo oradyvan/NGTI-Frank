@@ -1,5 +1,6 @@
 build/
 dist
+gem/frank-skeleton/lib*.a
 
 *.mode1v3
 *.mode2v3
