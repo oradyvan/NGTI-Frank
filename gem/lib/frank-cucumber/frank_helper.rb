@@ -159,6 +159,7 @@ module FrankHelper
   # @param [String] expected_title the expected title of the navigation bar
   # @return [Boolean]
   def navigation_title_with_text_exists(expected_title)
+    quote = get_selector_quote(expected_title)
     quoted_text = "#{quote}#{expected_title}#{quote}"
 
     navFrame = frankly_map('view:"UINavigationBar"', 'frame').first
@@ -198,6 +199,7 @@ module FrankHelper
   # @raise an rspec exception if the navigation bar and its subview `UINavigationItemView` cannot be found
   # @raise an rspec exception if the `UINavigationItemView` does not cover the center x of the navigation bar
   def check_navigation_title_with_text_exists(expected_title)
+    quote = get_selector_quote(expected_title)
     quoted_text = "#{quote}#{expected_title}#{quote}"
 
     navFrame = frankly_map('view:"UINavigationBar"', 'frame').first
