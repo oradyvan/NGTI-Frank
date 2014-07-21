@@ -4,10 +4,10 @@ require "frank-cucumber/version"
 
 Gem::Specification.new do |s|
   s.name        = "frank-cucumber"
-  s.version     = Frank::Cucumber::VERSION
+  s.version     = Frank::Cucumber::VERSION + ".ngti"
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["Pete Hodgson","Derek Longmuir"]
-  s.email       = ["gems@thepete.net"]
+  s.authors     = ["Pete Hodgson","Derek Longmuir","Oleksiy Radyvanyuk"]
+  s.email       = ["gems@thepete.net","oleksiy@ngti.nl"]
   s.homepage    = "http://rubygems.org/gems/frank-cucumber"
   s.summary     = %q{Use cucumber to test native iOS apps via Frank}
   s.description = %q{Use cucumber to test native iOS apps via Frank}
@@ -34,4 +34,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency( "yard" )
   s.add_development_dependency( "pry" )
   s.add_development_dependency( "pry-debugger" )
+  s.add_development_dependency( "byebug" )
 end
