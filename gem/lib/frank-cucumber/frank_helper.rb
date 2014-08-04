@@ -276,7 +276,7 @@ module FrankHelper
   # a better name for this method would be element_exists_and_is_not_hidden
   def element_is_not_hidden(selector)
      matches = frankly_map( selector, 'FEX_isVisible' )
-     matches.delete(false)
+     matches.delete(0)
      !matches.empty?
   end
 
