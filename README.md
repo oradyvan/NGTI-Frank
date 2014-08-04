@@ -53,7 +53,7 @@ After cloning this repo from NGTI project and following the steps described in s
 
 5. In order to deploy the just build gem to our web repository, issue the command:
 
-   `gem inabox ngti-frank-cucumber-1.2.3.gem`
+   `gem inabox ngti-frank-cucumber-X.Y.Z.gem`
 
    *When you issue this command for the very first time, it will ask you of the host. Please input `http://BuilderBot.cp11.ngti.nl:9292`*
 
