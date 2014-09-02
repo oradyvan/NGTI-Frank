@@ -7,14 +7,14 @@ module Frank module Cucumber
 module Launcher
     include Frank::Cucumber::FrankHelper
 
-  attr_accessor :application_path, :sdk, :version
+  attr_accessor :application_path, :sdk, :version, :args
 
   def simulator_client
     @simulator_client ||= SimLauncher::Client.new(@application_path, @sdk, @version)
   end
 
   def simulator_direct_client
-    @simulator_direct_client ||= SimLauncher::DirectClient.new(@application_path, @sdk, @version)
+    @simulator_direct_client ||= SimLauncher::DirectClientWithArgs.new(@application_path, @sdk, @version, @args)
   end
 
   def enforce(app_path, locator = Frank::Cucumber::AppBundleLocator.new)
@@ -33,10 +33,11 @@ module Launcher
     end
   end
 
-  def launch_app(app_path, sdk = nil, version = 'iphone', wait_for_launch = true)
+  def launch_app(app_path, sdk = nil, version = 'iphone', args = nil, wait_for_launch = true)
     @application_path = app_path
     @sdk = sdk
     @version = version
+    @args = args
 
     if path_is_mac_app(@application_path)
       launch_mac_app(wait_for_launch)
