@@ -18,6 +18,20 @@
 #include "NSApplication+FrankAutomation.h"
 #endif
 
+static NSString *const kDumpVerbs[] =
+{
+    @"dump",
+    @"except",
+    @"clear_except"
+};
+static NSString *const kDumpSelectors[] =
+{
+    @"dumpCommand:withConnection:",
+    @"exceptCommand:withConnection:",
+    @"clearExceptCommand:withConnection:"
+};
+static NSUInteger const kDumpVerbsCount = sizeof(kDumpVerbs)/sizeof(kDumpVerbs[0]);
+
 @implementation DumpCommandRoute {
     NSMutableDictionary *classMapping;
 }
@@ -308,14 +322,24 @@
 #pragma mark - Route
 
 - (BOOL)canHandlePostForPath:(NSArray *)path {
-    return [@"dump" isEqualToString:[path objectAtIndex:0]];
+    NSString *firstPathComponent = [path firstObject];
+
+    for (NSUInteger index = 0; index < kDumpVerbsCount; index++)
+    {
+        if ([firstPathComponent isEqualToString:kDumpVerbs[index]])
+        {
+            return YES;
+        }
+    }
+
+    return NO;
 }
 
-- (NSObject<HTTPResponse> *)handleRequestForPath:(NSArray *)path withConnection:(RoutingHTTPConnection *)connection {
+- (NSObject<HTTPResponse> *)dumpCommand:(NSArray *)path withConnection:(RoutingHTTPConnection *)connection {
     if (![@"dump" isEqualToString:[path objectAtIndex:0]]) {
         return nil;
     }
-    
+
     NSObject *root = nil;
     BOOL serializeSubviews = YES;
     
@@ -354,6 +378,29 @@
         NSData *jsonData = [json dataUsingEncoding:NSUTF8StringEncoding];
         return [[[HTTPDataResponse alloc] initWithData:jsonData] autorelease];
     }
+}
+
+- (NSObject<HTTPResponse> *)exceptCommand:(NSArray *)path withConnection:(RoutingHTTPConnection *)connection {
+    return nil;
+}
+
+- (NSObject<HTTPResponse> *)clearExceptCommand:(NSArray *)path withConnection:(RoutingHTTPConnection *)connection {
+    return nil;
+}
+
+- (NSObject<HTTPResponse> *)handleRequestForPath:(NSArray *)path withConnection:(RoutingHTTPConnection *)connection {
+    NSString *firstPathComponent = [path firstObject];
+
+    for (NSUInteger index = 0; index < kDumpVerbsCount; index++)
+    {
+        if ([firstPathComponent isEqualToString:kDumpVerbs[index]])
+        {
+            SEL selector = NSSelectorFromString(kDumpSelectors[index]);
+            return [self performSelector:selector withObject:path withObject:connection];
+        }
+    }
+
+    return nil;
 }
 
 @end
