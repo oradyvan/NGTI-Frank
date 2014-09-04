@@ -34,6 +34,7 @@ static NSUInteger const kDumpVerbsCount = sizeof(kDumpVerbs)/sizeof(kDumpVerbs[0
 
 @implementation DumpCommandRoute {
     NSMutableDictionary *classMapping;
+    NSMutableSet *exceptedClasses;
 }
 
 #pragma mark - init/dealloc
@@ -42,6 +43,7 @@ static NSUInteger const kDumpVerbsCount = sizeof(kDumpVerbs)/sizeof(kDumpVerbs[0
     self = [super init];
     if(self) {
         classMapping = [[NSMutableDictionary alloc] init];
+        exceptedClasses = [[NSMutableSet alloc] init];
         [self loadClassMapping];
     }
     return self;
@@ -49,6 +51,7 @@ static NSUInteger const kDumpVerbsCount = sizeof(kDumpVerbs)/sizeof(kDumpVerbs[0
 
 - (void) dealloc {
     [classMapping release];
+    [exceptedClasses release];
     [super dealloc];
 }
 
@@ -131,9 +134,17 @@ static NSUInteger const kDumpVerbsCount = sizeof(kDumpVerbs)/sizeof(kDumpVerbs[0
 #pragma mark - Serialization
 
 - (NSDictionary *)serializeObject:(NSObject *)object withSubviews:(BOOL)serializeSubviews {
+    NSString *classString = NSStringFromClass(object.class);
+
+    // if the class is among those to be excluded, do not serialize the object and its subviews
+    if ([exceptedClasses containsObject:classString])
+    {
+        return nil;
+    }
+
     NSMutableDictionary *serializedObject = [NSMutableDictionary dictionaryWithCapacity:20];
-    
-    [serializedObject setObject:NSStringFromClass(object.class) forKey: @"class"];
+
+    [serializedObject setObject:classString forKey: @"class"];
     
     // use the view's raw location in memory as a poor man's uid
     
@@ -144,8 +155,7 @@ static NSUInteger const kDumpVerbsCount = sizeof(kDumpVerbs)/sizeof(kDumpVerbs[0
 #endif
     
     [serializedObject setObject:uid forKey:@"uid"];
-    
-    
+
     // iterate on all mapping definition classes looking for a (super) class of the current object
     for (NSString *key in classMapping.keyEnumerator) {
         
@@ -189,7 +199,11 @@ static NSUInteger const kDumpVerbsCount = sizeof(kDumpVerbs)/sizeof(kDumpVerbs[0
         NSMutableArray *serializedSubviews = [NSMutableArray arrayWithCapacity:descendants.count];
         
         for (NSObject *descendant in descendants) {
-            [serializedSubviews addObject:[self serializeObject:descendant withSubviews:YES]];
+            NSDictionary *serializedDescendant = [self serializeObject:descendant withSubviews:YES];
+            if (nil != serializedDescendant)
+            {
+                [serializedSubviews addObject:serializedDescendant];
+            }
         }
         
         [serializedObject setObject:serializedSubviews forKey:@"subviews"];
@@ -336,10 +350,6 @@ static NSUInteger const kDumpVerbsCount = sizeof(kDumpVerbs)/sizeof(kDumpVerbs[0
 }
 
 - (NSObject<HTTPResponse> *)dumpCommand:(NSArray *)path withConnection:(RoutingHTTPConnection *)connection {
-    if (![@"dump" isEqualToString:[path objectAtIndex:0]]) {
-        return nil;
-    }
-
     NSObject *root = nil;
     BOOL serializeSubviews = YES;
     
@@ -381,11 +391,26 @@ static NSUInteger const kDumpVerbsCount = sizeof(kDumpVerbs)/sizeof(kDumpVerbs[0
 }
 
 - (NSObject<HTTPResponse> *)exceptCommand:(NSArray *)path withConnection:(RoutingHTTPConnection *)connection {
+    // as an example, the command may look like this:
+    // "/except/UIStatusBarWindow" so that the string @"UIStatusBarWindow" needs to be added to the set of exceptions
+    if ([path count] > 1)
+    {
+        // except all classes represented as path components right after "except" component
+        for (NSUInteger index = 1; index < [path count]; index++)
+        {
+            NSString *classToExcept = path[index];
+            [exceptedClasses addObject:classToExcept];
+        }
+        // return success code
+        return [[[HTTPDataResponse alloc] initWithData:nil] autorelease];
+    }
     return nil;
 }
 
 - (NSObject<HTTPResponse> *)clearExceptCommand:(NSArray *)path withConnection:(RoutingHTTPConnection *)connection {
-    return nil;
+    [exceptedClasses removeAllObjects];
+    // return success code
+    return [[[HTTPDataResponse alloc] initWithData:nil] autorelease];
 }
 
 - (NSObject<HTTPResponse> *)handleRequestForPath:(NSArray *)path withConnection:(RoutingHTTPConnection *)connection {
