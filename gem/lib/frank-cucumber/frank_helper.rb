@@ -267,7 +267,8 @@ module FrankHelper
   # Raises an exception if there were still views animating after {timeout} seconds.
   def wait_for_nothing_to_be_animating( timeout = false )
     wait_until :timeout => timeout do
-      !element_exists('view isAnimating')
+      # ignore system status bar
+      !element_exists("view:'!UIStatusBar' isAnimating")
     end
   end
 
