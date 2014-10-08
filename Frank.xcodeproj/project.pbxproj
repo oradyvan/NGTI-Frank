@@ -105,6 +105,7 @@
 		65DBDDF316A89E72007D3D43 /* ContextFilterLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E4CA15C81E8700112290 /* ContextFilterLogFormatter.m */; };
 		65DBDDF416A89E72007D3D43 /* DispatchQueueLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E4CC15C81E8700112290 /* DispatchQueueLogFormatter.m */; };
 		65DBDDF616A89E72007D3D43 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 305CA7A31642063E00C4ACE5 /* Foundation.framework */; };
+		6E56B66C19E577CC00264F41 /* Frank_Xcode6_fix.c in Sources */ = {isa = PBXBuildFile; fileRef = 6E56B66B19E577CC00264F41 /* Frank_Xcode6_fix.c */; };
 		9B3E52AF163FB98300EB24C2 /* LocationCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B3E52AD163FB98300EB24C2 /* LocationCommand.h */; };
 		9B3E52B0163FB98300EB24C2 /* LocationCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E52AE163FB98300EB24C2 /* LocationCommand.m */; };
 		A91F3AA615F6E456003F434F /* ExitCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = A91F3AA415F6E456003F434F /* ExitCommand.h */; };
@@ -348,6 +349,7 @@
 		65DBDDB516A89CDC007D3D43 /* libCocoaLumberjack.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCocoaLumberjack.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		65DBDDDA16A89E5B007D3D43 /* libCocoaAsyncSocketMac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCocoaAsyncSocketMac.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		65DBDDFB16A89E72007D3D43 /* libCocoaLumberjackMac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCocoaLumberjackMac.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E56B66B19E577CC00264F41 /* Frank_Xcode6_fix.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Frank_Xcode6_fix.c; sourceTree = "<group>"; };
 		9B3E52AD163FB98300EB24C2 /* LocationCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationCommand.h; sourceTree = "<group>"; };
 		9B3E52AE163FB98300EB24C2 /* LocationCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationCommand.m; sourceTree = "<group>"; };
 		A91F3AA415F6E456003F434F /* ExitCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExitCommand.h; sourceTree = "<group>"; };
@@ -775,6 +777,7 @@
 				D67F2ABE13F5F55A00A0BFF1 /* FrankLoader.m */,
 				D6D05CA511C883AA0081C5A5 /* FrankServer.h */,
 				D6D05CA611C883AA0081C5A5 /* FrankServer.m */,
+				6E56B66B19E577CC00264F41 /* Frank_Xcode6_fix.c */,
 			);
 			name = Frank;
 			sourceTree = "<group>";
@@ -1268,6 +1271,7 @@
 				D67F2AAE13F5E7FA00A0BFF1 /* AccessibilityCheckCommand.m in Sources */,
 				D67F2AC013F5F55A00A0BFF1 /* FrankLoader.m in Sources */,
 				D6BD521F146C34BF001770B1 /* SelectorEngineRegistry.m in Sources */,
+				6E56B66C19E577CC00264F41 /* Frank_Xcode6_fix.c in Sources */,
 				0071264714F8956700E738ED /* ViewJSONSerializer.m in Sources */,
 				D6FA01B714283C4F00576AE1 /* FranklyProtocolHelper.m in Sources */,
 				D6A1D28015A8D05E00EC056C /* UIView+Frank.m in Sources */,
