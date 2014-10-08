@@ -4,6 +4,8 @@
 //
 //  Created by Oleksiy Radyvanyuk on 08/10/14.
 //
+//  Taken from:
+//  http://helpdesk.metaio.com/questions/35905/undefined-symbols-for-architecture-i386-xcode-6-ios-8-beta-6
 //
 
 #include <stdio.h>
