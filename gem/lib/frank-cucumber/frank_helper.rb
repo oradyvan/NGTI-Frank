@@ -268,7 +268,7 @@ module FrankHelper
   def wait_for_nothing_to_be_animating( timeout = false )
     wait_until :timeout => timeout do
       # ignore system status bar
-      !element_exists("view:'!UIStatusBar' isAnimating")
+      !element_exists("view:'!UIStatusBar' FEX_isAnimating")
     end
   end
 
