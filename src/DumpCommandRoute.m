@@ -65,7 +65,7 @@ static NSUInteger const kDumpVerbsCount = sizeof(kDumpVerbs)/sizeof(kDumpVerbs[0
     [self loadClassMappingFromBundle:staticResourceBundle plistFile:@"ViewAttributeMapping" warnIfNotFound:YES];
     [self loadClassMappingFromBundle:staticResourceBundle plistFile:@"UserViewAttributeMapping" warnIfNotFound:NO];
     
-    NSLog(@"Done loading view attribute mapping, found %u classes mapped.\nMapping definition:\n%@", classMapping.count, classMapping);
+    NSLog(@"Done loading view attribute mapping, found %lu classes mapped.\nMapping definition:\n%@", (unsigned long)classMapping.count, classMapping);
 #else
     [self loadClassMappingFromBundle:staticResourceBundle plistFile:@"ViewAttributeMappingMac" warnIfNotFound:YES];
     [self loadClassMappingFromBundle:staticResourceBundle plistFile:@"UserViewAttributeMappingMac" warnIfNotFound:NO];

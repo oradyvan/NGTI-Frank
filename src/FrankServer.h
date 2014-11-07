@@ -10,6 +10,8 @@
 
 #define FRANK_SERVER_PORT 37265
 
+extern NSString *const kStopFrankServerNotification;
+
 @interface FrankServer : NSObject {
 	HTTPServer *_httpServer;
 }
@@ -20,6 +22,6 @@
 - (id) initWithStaticFrankBundleNamed:(NSString *)bundleName;
 
 - (BOOL) startServer;
-
+- (void) stopServer;
 
 @end

@@ -11,6 +11,7 @@
 #import "HTTPServer.h"
 #import "RoutingHTTPConnection.h"
 #import "StaticResourcesRoute.h"
+#import "DieCommandRoute.h"
 #import "DumpCommandRoute.h"
 #import "ImageCaptureRoute.h"
 #import "FrankCommandRoute.h"
@@ -42,6 +43,8 @@
 const unsigned char frank_what_string[] = "@(#)" VERSIONED_NAME "\n";
 
 static NSUInteger __defaultPort = FRANK_SERVER_PORT;
+NSString *const kStopFrankServerNotification = @"StopFrankServerNotification";
+
 @implementation FrankServer
 
 + (void)setDefaultHttpPort:(NSUInteger)port
@@ -84,6 +87,9 @@ static NSUInteger __defaultPort = FRANK_SERVER_PORT;
 		StaticResourcesRoute *staticRoute = [[[StaticResourcesRoute alloc] initWithStaticResourceSubDir:bundleName] autorelease];
 		[[RequestRouter singleton] registerRoute:staticRoute];
         
+        DieCommandRoute *dieCaptureCommand = [[[DieCommandRoute alloc] init] autorelease];
+        [[RequestRouter singleton] registerRoute:dieCaptureCommand];
+
         DumpCommandRoute *dumpCaptureCommand = [[[DumpCommandRoute alloc] init] autorelease];
 		[[RequestRouter singleton] registerRoute:dumpCaptureCommand];        
         
@@ -96,12 +102,16 @@ static NSUInteger __defaultPort = FRANK_SERVER_PORT;
 		[_httpServer setType:@"_http._tcp."];
 		[_httpServer setConnectionClass:[RoutingHTTPConnection class]];
 		[_httpServer setPort:__defaultPort];
+
+        // subscribing to notification that stops Frank server
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopServer) name:kStopFrankServerNotification object:nil];
 		NSLog( @"Creating the server: %@", _httpServer );
 	}
 	return self;
 }
 
-- (BOOL) startServer{
+- (BOOL) startServer
+{
     NSLog( @"Starting server %s", VERSIONED_NAME );
 	NSError *error;
 	if( ![_httpServer start:&error] ) {
@@ -111,8 +121,15 @@ static NSUInteger __defaultPort = FRANK_SERVER_PORT;
 	return YES;
 }
 
+- (void) stopServer
+{
+    NSLog( @"Stopping server %s", VERSIONED_NAME );
+    [_httpServer stop];
+}
+
 - (void) dealloc
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kStopFrankServerNotification object:nil];
 	[_httpServer release];
 	[super dealloc];
 }

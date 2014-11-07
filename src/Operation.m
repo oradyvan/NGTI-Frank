@@ -72,7 +72,7 @@
 	if( requiredNumberOfArguments != [_arguments count] )
 #if TARGET_OS_IPHONE
 		[NSException raise:@"wrong number of arguments"
-					format:@"%@ takes %i arguments, but %i were supplied", NSStringFromSelector(_selector), requiredNumberOfArguments, [_arguments count] ];
+					format:@"%@ takes %lu arguments, but %lu were supplied", NSStringFromSelector(_selector), (unsigned long)requiredNumberOfArguments, (unsigned long)[_arguments count] ];
 #else
         [NSException raise:@"wrong number of arguments"
                     format:@"%@ takes %lu arguments, but %lu were supplied", NSStringFromSelector(_selector), requiredNumberOfArguments, [_arguments count] ];

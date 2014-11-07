@@ -356,6 +356,11 @@ module FrankHelper
     return Gateway.evaluate_frankly_response( res, "frankly_map #{selector} #{method_name}" )
   end
 
+  # stops Frank server that is running in the application under test
+  def frankly_die
+  	frank_server.send_get( 'die' )
+  end
+
   # print a JSON-formatted dump of the current view heirarchy to stdout
   def frankly_dump
     res = frank_server.send_get( 'dump' )
