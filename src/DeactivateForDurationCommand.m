@@ -19,11 +19,9 @@
     NSDictionary *requestCommand = FROM_JSON(requestBody);
     NSNumber *seconds = [requestCommand objectForKey:@"seconds"];
 
-    if (![[UIAutomationBridge uiat] deactivateAppForDuration:seconds])
-    {
-        return [FranklyProtocolHelper generateErrorResponseWithReason:@"cannot deactivate app"
-                                                           andDetails:@"PublicAutomation was not able to send app to background and return it back to foreground"];
-    }
+    // make the call asyncronous so that Frank scripts could do something else while the app is in background
+    UIATarget *localTarget = [UIAutomationBridge uiat];
+    [localTarget performSelectorOnMainThread:@selector(deactivateAppForDuration:) withObject:seconds waitUntilDone:NO];
 
     return [FranklyProtocolHelper generateSuccessResponseWithoutResults];
 }
