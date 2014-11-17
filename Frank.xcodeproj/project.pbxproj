@@ -110,6 +110,8 @@
 		6E3F4CC01A0D1E710024CB2D /* DieCommandRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3F4CBD1A0D1E710024CB2D /* DieCommandRoute.m */; };
 		6E3F4CC11A0D1E710024CB2D /* DieCommandRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3F4CBD1A0D1E710024CB2D /* DieCommandRoute.m */; };
 		6E56B66C19E577CC00264F41 /* Frank_Xcode6_fix.c in Sources */ = {isa = PBXBuildFile; fileRef = 6E56B66B19E577CC00264F41 /* Frank_Xcode6_fix.c */; };
+		6E9B9F541A1A4F480065D7D8 /* DeactivateForDurationCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E9B9F521A1A4F480065D7D8 /* DeactivateForDurationCommand.h */; };
+		6E9B9F561A1A4F480065D7D8 /* DeactivateForDurationCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9B9F531A1A4F480065D7D8 /* DeactivateForDurationCommand.m */; };
 		9B3E52AF163FB98300EB24C2 /* LocationCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B3E52AD163FB98300EB24C2 /* LocationCommand.h */; };
 		9B3E52B0163FB98300EB24C2 /* LocationCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E52AE163FB98300EB24C2 /* LocationCommand.m */; };
 		A91F3AA615F6E456003F434F /* ExitCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = A91F3AA415F6E456003F434F /* ExitCommand.h */; };
@@ -356,6 +358,8 @@
 		6E3F4CBC1A0D1E710024CB2D /* DieCommandRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DieCommandRoute.h; sourceTree = "<group>"; };
 		6E3F4CBD1A0D1E710024CB2D /* DieCommandRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DieCommandRoute.m; sourceTree = "<group>"; };
 		6E56B66B19E577CC00264F41 /* Frank_Xcode6_fix.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Frank_Xcode6_fix.c; sourceTree = "<group>"; };
+		6E9B9F521A1A4F480065D7D8 /* DeactivateForDurationCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeactivateForDurationCommand.h; sourceTree = "<group>"; };
+		6E9B9F531A1A4F480065D7D8 /* DeactivateForDurationCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeactivateForDurationCommand.m; sourceTree = "<group>"; };
 		9B3E52AD163FB98300EB24C2 /* LocationCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationCommand.h; sourceTree = "<group>"; };
 		9B3E52AE163FB98300EB24C2 /* LocationCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationCommand.m; sourceTree = "<group>"; };
 		A91F3AA415F6E456003F434F /* ExitCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExitCommand.h; sourceTree = "<group>"; };
@@ -714,6 +718,8 @@
 				D67F2AAC13F5E7FA00A0BFF1 /* AccessibilityCheckCommand.m */,
 				4C1DD76B12BADFE100E10B8C /* AppCommand.h */,
 				4C1DD76A12BADFE100E10B8C /* AppCommand.m */,
+				6E9B9F521A1A4F480065D7D8 /* DeactivateForDurationCommand.h */,
+				6E9B9F531A1A4F480065D7D8 /* DeactivateForDurationCommand.m */,
 				303CFCE216C80B830004BD05 /* DeviceCommand.h */,
 				303CFCE316C80B830004BD05 /* DeviceCommand.m */,
 				D6FA01B714283C4F00576AF0 /* EnginesCommand.h */,
@@ -919,6 +925,7 @@
 				9B3E52AF163FB98300EB24C2 /* LocationCommand.h in Headers */,
 				30C544B1167E4D9E0034F49C /* SuccessCommand.h in Headers */,
 				C189EF1E16BB5A8100F8236D /* VersionCommand.h in Headers */,
+				6E9B9F541A1A4F480065D7D8 /* DeactivateForDurationCommand.h in Headers */,
 				303CFCE416C80B830004BD05 /* DeviceCommand.h in Headers */,
 				30E82E3217128AB500E5BC7C /* ResolutionCommand.h in Headers */,
 				0658EF1E17E52FBB000614E6 /* UIApplication+FrankAutomation.h in Headers */,
@@ -1279,6 +1286,7 @@
 				D6D05CC211C883AA0081C5A5 /* StaticResourcesRoute.m in Sources */,
 				D6D79B5E11D7FB8B003E0E60 /* Operation.m in Sources */,
 				4C1DD76C12BADFE100E10B8C /* OrientationCommand.m in Sources */,
+				6E9B9F561A1A4F480065D7D8 /* DeactivateForDurationCommand.m in Sources */,
 				4C1DD76E12BADFE100E10B8C /* AppCommand.m in Sources */,
 				D67F2AAE13F5E7FA00A0BFF1 /* AccessibilityCheckCommand.m in Sources */,
 				D67F2AC013F5F55A00A0BFF1 /* FrankLoader.m in Sources */,

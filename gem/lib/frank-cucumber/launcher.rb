@@ -116,5 +116,17 @@ module Launcher
     self.launch
   end
 
+  # Sends app to background for appropriate number of seconds, then returns it back to foreground.
+  #
+  # @param [Fixnum] seconds Number of seconds for the app to stay inactive
+  #
+  def deactivate_app_for_duration(seconds)
+        res = frank_server.send_post(
+      'deactivate_for_duration',
+      :seconds => seconds.to_f
+    )
+    Frank::Cucumber::Gateway.evaluate_frankly_response(res, "deactivating for duration of '#{seconds}' seconds")
+  end
+
 end
 end end

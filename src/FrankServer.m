@@ -24,6 +24,7 @@
 #import "SuccessCommand.h"
 #import "MapOperationCommand.h"
 #import "ResolutionCommand.h"
+#import "DeactivateForDurationCommand.h"
 
 #if TARGET_OS_IPHONE
 #import "OrientationCommand.h"
@@ -71,7 +72,8 @@ NSString *const kStopFrankServerNotification = @"StopFrankServerNotification";
         [frankCommandRoute registerCommand:[[[VersionCommand alloc] initWithVersion:[NSString stringWithFormat:@"%s",xstr(FRANK_PRODUCT_VERSION)]]autorelease] withName:@"version"];
         [frankCommandRoute registerCommand:[[[ExitCommand alloc] init] autorelease] withName:@"exit"];
         [frankCommandRoute registerCommand:[[[MapOperationCommand alloc]init]autorelease] withName:@"map"];
-        
+        [frankCommandRoute registerCommand:[[[DeactivateForDurationCommand alloc] init] autorelease] withName:@"deactivate_for_duration"];
+
 #if TARGET_OS_IPHONE
         [frankCommandRoute registerCommand:[[[OrientationCommand alloc]init]autorelease] withName:@"orientation"];
         [frankCommandRoute registerCommand:[[[LocationCommand alloc]init]autorelease] withName:@"location"];
