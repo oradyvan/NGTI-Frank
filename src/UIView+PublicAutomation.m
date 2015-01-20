@@ -285,4 +285,10 @@ NSString * formatCGPointVal(NSValue *val) {
     return YES;
 }
 
+- (BOOL)FEX_dragFromX:(CGFloat)fromX fromY:(CGFloat)fromY toX:(CGFloat)toX toY:(CGFloat)toY
+{
+    [UIAutomationBridge dragFromX:fromX fromY:fromY toX:toX toY:toY];
+    return YES;
+}
+
 @end
