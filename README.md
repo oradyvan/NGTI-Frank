@@ -35,28 +35,32 @@ After cloning this repo from NGTI project and following the steps described in s
 
    `sudo gem uninstall frank-cucumber`
 
-2. Gem file is being deployed to a separate web repository that is only accessible from inside of our company network. To set it up, issue the commands:
+2. We have moved to the new Gem repository server. This is advised to remove refernce to old server by issuing the command:
+
+   `gem sources --remove http://BuilderBot.cp11.ngti.nl:9292`
+
+3. Gem file is being deployed to a separate web repository that is only accessible from inside of our company network. To set it up, issue the commands:
 
     `sudo gem install geminabox`
 
-    `gem sources --add http://BuilderBot.cp11.ngti.nl:9292`
+    `gem sources --add http://gem.cp.ngti.nl:9292`
 
-3. To build new gem file, in Terminal go to your Frank working copy and issue the command:
+4. To build new gem file, in Terminal go to your Frank working copy and issue the command:
 
    `rake build_for_release`
 
-4. After the build was successful, `cd gem` and issue the command:
+5. After the build was successful, `cd gem` and issue the command:
 
    `gem build frank-cucumber.gemspec`
    
    As the result of success you should see a file named `ngti-frank-cucumber-X.Y.Z.gem` created in current directory.
 
-5. In order to deploy the just build gem to our web repository, issue the command:
+6. In order to deploy the just build gem to our web repository, issue the command:
 
    `gem inabox ngti-frank-cucumber-X.Y.Z.gem`
 
-   *When you issue this command for the very first time, it will ask you of the host. Please input `http://BuilderBot.cp11.ngti.nl:9292`*
+   *When you issue this command for the very first time, it will ask you of the host. Please input `http://gem.cp.ngti.nl:9292`*
 
-6. Finally, the gem is published and is available to be downloaded by everyone interested. The command for this is:
+7. Finally, the gem is published and is available to be downloaded by everyone interested. The command for this is:
 
    `sudo gem update ngti-frank-cucumber`
