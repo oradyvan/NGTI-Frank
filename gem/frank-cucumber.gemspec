@@ -21,19 +21,19 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  s.add_dependency( "cucumber", ["~>1.3.10"] )
-  s.add_dependency( "rspec", ["~>2.14.1"] )
-  s.add_dependency( "sim_launcher", ["~>0.4.6"] )
-  s.add_dependency( "i18n", ["~>0.6.9"] )
-  s.add_dependency( "plist", ["~>3.1.0"] )
-  s.add_dependency( "json", ["1.8.1"] ) # TODO: figure out how to be more permissive as to which JSON gems we allow
+  s.add_runtime_dependency 'cucumber', '~> 1.3', '>= 1.3.10'
+  s.add_runtime_dependency 'rspec', '~> 2.14', '>= 2.14.1'
+  s.add_runtime_dependency 'sim_launcher', '~> 0.4', '>= 0.4.6'
+  s.add_runtime_dependency 'i18n', '~> 0.6', '>= 0.6.9'
+  s.add_runtime_dependency 'plist', '~> 3.1', '>= 3.1.0'
+  s.add_runtime_dependency 'json', '~>1.8', '>= 1.8.1'
   s.add_dependency( "dnssd", ["~>2.0"] )
-  s.add_dependency( "thor", ["~>0.18.1"] )
-  s.add_dependency( "xcodeproj", ["~>0.14.1"] )
+  s.add_runtime_dependency 'thor', '~> 0.18', '>= 0.18.1'
+  s.add_runtime_dependency 'xcodeproj', '~> 0.14', '>= 0.14.1'
 
-  s.add_development_dependency( "rr" )
-  s.add_development_dependency( "yard" )
-  s.add_development_dependency( "pry" )
-  s.add_development_dependency( "pry-debugger" )
-  s.add_development_dependency( "byebug" )
+  s.add_development_dependency 'rr', '~> 0'
+  s.add_development_dependency 'yard', '~> 0'
+  s.add_development_dependency 'pry', '~> 0'
+  s.add_development_dependency 'pry-debugger', '~> 0'
+  s.add_development_dependency 'byebug', '~> 0'
 end
